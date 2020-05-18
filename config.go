@@ -14,8 +14,8 @@ type Config struct {
 	fallback      *Config
 }
 
-func GetFallback(config *Config) *Config {
-	return config.fallback
+func (p *Config) GetFallback() *Config {
+	return p.fallback
 }
 
 func NewConfigFromRoot(root *hocon.HoconRoot) *Config {
