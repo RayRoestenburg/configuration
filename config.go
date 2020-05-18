@@ -14,6 +14,10 @@ type Config struct {
 	fallback      *Config
 }
 
+func GetFallback(config *Config) *Config {
+	return config.fallback
+}
+
 func NewConfigFromRoot(root *hocon.HoconRoot) *Config {
 	if root.Value() == nil {
 		panic("The root value cannot be null.")
