@@ -275,14 +275,9 @@ func (p *Config) WithFallback(fallback *Config) *Config {
 
 	mergedRoot := p.root.GetObject().MergeImmutable(fallback.root.GetObject())
 	newRoot := hocon.NewHoconValue()
-
 	newRoot.AppendValue(mergedRoot)
-
-	mergedConfig := p.Copy(fallback)
-
-	mergedConfig.root = newRoot
-
-	return mergedConfig
+	fb := NewConfigFromRoot(hocon.NewHoconRoot(newRoot))
+	return p.Copy(fb)
 }
 
 func (p *Config) HasPath(path string) bool {
